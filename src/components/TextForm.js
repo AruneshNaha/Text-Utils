@@ -44,32 +44,32 @@ export default function TextForm(props) {
           value={text}
           onChange={handleOnChange}
           style={{
-            backgroundColor: props.mode === "dark" ? "grey" : "white",
-            // color: props.mode === "dark" ? "white" : "black",
+            backgroundColor: props.mode === "dark" ? "#404040" : "white",
+            color: props.mode === "dark" ? "#B3B3B3" : "black",
           }}
           rows="8"
         ></textarea>
       </div>
 
-      <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+      <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
         Convert to Uppercase
       </button>
-      <button className="btn btn-info mx-2" onClick={handleLowClick}>
+      <button disabled={text.length===0} className="btn btn-info mx-2 my-1" onClick={handleLowClick}>
         Convert to Lowercase
       </button>
-      <button className="btn btn-danger mx-2" onClick={handleClearClick}>
+      <button disabled={text.length===0} className="btn btn-danger mx-2 my-1" onClick={handleClearClick}>
         Clear text
       </button>
-      <button className="btn btn-success mx-2" onClick={handleCopyClick}>
+      <button disabled={text.length===0} className="btn btn-success mx-2 my-1" onClick={handleCopyClick}>
         Copy text
       </button>
-      <button className="btn btn-warning mx-2" onClick={handleExtraSpaceClick}>
+      <button disabled={text.length===0} className="btn btn-warning mx-2 my-1" onClick={handleExtraSpaceClick}>
         Clear extra space
       </button>
       <div className="container my-2">
-        {text.split(" ").length - 1} words {text.length} characters
+        {text.split(" ").filter((element) => {return element.length!==0}).length} words {text.length} characters
         <br />
-        {text.split(" ").length * 0.008} Minutes to read
+        {0.008 * text.split(" ").filter((element) => {return element.length!==0}).length} Minutes to read
       </div>
     </div>
   );

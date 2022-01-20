@@ -1,44 +1,21 @@
 import React from "react";
 import { useState } from "react/cjs/react.development";
 
-export default function About() {
-  const [mystyle, setMystyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-
-  const [btnText, setBtnText] = useState("Enable dark mode")
-
-  let darkmode = {
-    color: "white",
-    backgroundColor: "black",
-    text: "Enable light mode"
+export default function About(props) {
+  let mystyle = {
+    color: props.mode === "dark" ? "white" : "black",
+    backgroundColor: props.mode === "dark" ? "#404040" : "white",
+    // "border-radius": "20px"
   };
 
-  let lightmode = {
-    color: "black",
-    backgroundColor: "white",
-    text: "Enable dark mode"
-  };
-
-  const toggleStyle = () => {
-    if (mystyle.color === "black") {
-      setMystyle(darkmode)
-      setBtnText(darkmode.text)
-    }else{
-      setMystyle(lightmode)
-      setBtnText(lightmode.text)
-    }
-  }
-
-  const darkMode = () => {
-    toggleStyle();
+  let border = {
+    border: props.mode === "dark" ? "1px solid #B3B3B3" : "",
   };
 
   return (
-    <div className="container" style={mystyle}>
+    <div className="container p-3" style={mystyle}>
       <h1>About Us</h1>
-      <div className="accordion" id="accordionExample">
+      <div className="accordion" id="accordionExample" style={border}>
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -50,7 +27,7 @@ export default function About() {
               aria-controls="collapseOne"
               style={mystyle}
             >
-              Accordion Item #1
+              <strong>Analyze your text</strong>
             </button>
           </h2>
           <div
@@ -60,9 +37,8 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={mystyle}>
-              <strong>This is the first item's accordion body.</strong> Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Alias,
-              mollitia.
+              Textutils give you a way to analyze your text quickly and
+              efficiently. Be it word count or character count.
             </div>
           </div>
         </div>
@@ -77,7 +53,7 @@ export default function About() {
               aria-controls="collapseTwo"
               style={mystyle}
             >
-              Accordion Item #2
+              <strong>Free to use</strong>
             </button>
           </h2>
           <div
@@ -87,9 +63,10 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={mystyle}>
-              <strong>This is the second item's accordion body.</strong> Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Sequi,
-              dolorum!
+              Textutils is a free character counter tool that provides instant
+              character count, word count & word count statistics for a given
+              text. Textutils reports the number of characters. Thus it is
+              suitable for writing text with words/character limit.
             </div>
           </div>
         </div>
@@ -104,7 +81,7 @@ export default function About() {
               aria-controls="collapseThree"
               style={mystyle}
             >
-              Accordion Item #3
+              <strong>Browser Compatible</strong>
             </button>
           </h2>
           <div
@@ -113,18 +90,12 @@ export default function About() {
             aria-labelledby="headingThree"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body" style={mystyle} style={mystyle}>
-              <strong>This is the third item's accordion body.</strong> Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Labore,
-              adipisci.
+            <div className="accordion-body" style={mystyle}>
+              The word counter software works in any web browser such as Chrome, Firefox, Edge, Safari, Opera, It suits to count characters
+              in facebook, blogs, books, excel documents, pdf documents, essays, etc.
             </div>
           </div>
         </div>
-      </div>
-      <div className="container my-2">
-        <button type="button" className="btn btn-primary" onClick={darkMode}>
-          {btnText}
-        </button>
       </div>
     </div>
   );
